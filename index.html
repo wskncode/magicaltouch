@@ -41,21 +41,26 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
       background-color: var(--bg);
       color: var(--text);
       font-family: var(--font);
+      font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      width: 100%;
+      position: relative;
     }
 
     /* Accessibility Focus Rings */
     a:focus-visible,
-    button:focus-visible {
+    button:focus-visible,
+    summary:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
@@ -80,6 +85,8 @@
       max-width: 1140px;
       margin: 0 auto;
       padding: 0 24px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     /* Navbar */
@@ -89,28 +96,30 @@
       z-index: 100;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      background: rgba(9, 13, 20, 0.82);
+      background: rgba(9, 13, 20, 0.88);
       border-bottom: 1px solid var(--border);
+      width: 100%;
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 72px;
-      gap: 16px;
+      height: 68px;
+      gap: 12px;
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: var(--text);
       font-weight: 700;
       font-size: 1.15rem;
       letter-spacing: -0.02em;
       flex-shrink: 0;
+      min-height: 44px;
     }
 
     .brand img {
@@ -118,12 +127,13 @@
       height: 36px;
       border-radius: 9px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      display: block;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 24px;
       list-style: none;
     }
 
@@ -133,6 +143,9 @@
       font-size: 0.95rem;
       font-weight: 500;
       transition: color 0.15s ease;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .nav-links a:hover {
@@ -142,8 +155,12 @@
     .nav-cta {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-shrink: 0;
+    }
+
+    .nav-pro-text-mobile {
+      display: none;
     }
 
     /* Buttons */
@@ -161,7 +178,9 @@
       cursor: pointer;
       border: 1px solid transparent;
       white-space: nowrap;
-      min-height: 42px;
+      min-height: 44px;
+      box-sizing: border-box;
+      max-width: 100%;
     }
 
     .btn-primary {
@@ -192,14 +211,14 @@
     }
 
     .btn-lg {
-      padding: 14px 26px;
+      padding: 14px 24px;
       font-size: 1.05rem;
       border-radius: 12px;
       min-height: 48px;
     }
 
     .btn-badge {
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 700;
       padding: 2px 7px;
       border-radius: 999px;
@@ -207,11 +226,12 @@
       color: #ffffff;
       margin-left: 2px;
       letter-spacing: 0.02em;
+      line-height: 1.3;
     }
 
     /* Hero */
     .hero {
-      padding: 80px 0 60px;
+      padding: 68px 0 44px;
       text-align: center;
     }
 
@@ -219,16 +239,18 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 16px;
+      padding: 6px 14px;
       background: rgba(99, 102, 241, 0.12);
       border: 1px solid rgba(99, 102, 241, 0.32);
       border-radius: 999px;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 600;
       color: #a5b4fc;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      max-width: 100%;
+      line-height: 1.35;
     }
 
     .badge-icon {
@@ -236,34 +258,36 @@
       height: 16px;
       color: #38bdf8;
       display: inline-flex;
+      flex-shrink: 0;
     }
 
     .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-size: clamp(2rem, 5vw, 3.8rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.15;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero p.lead {
-      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
       color: var(--text-muted);
       max-width: 720px;
-      margin: 0 auto 36px;
-      line-height: 1.6;
+      margin: 0 auto 28px;
+      line-height: 1.55;
     }
 
     .hero-actions {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
+      width: 100%;
     }
 
     .hero-footnote {
@@ -278,23 +302,27 @@
 
     /* Showcase Card */
     .showcase-card {
-      margin-top: 50px;
+      margin-top: 40px;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 44px;
+      padding: 38px;
       position: relative;
       overflow: hidden;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .showcase-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      gap: 44px;
+      gap: 36px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .showcase-visual {
@@ -302,6 +330,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
     }
 
     .mouse-img {
@@ -311,6 +340,7 @@
       object-fit: contain;
       filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7));
       transition: transform 0.3s ease;
+      display: block;
     }
 
     .showcase-visual:hover .mouse-img {
@@ -353,6 +383,7 @@
 
     .showcase-info {
       text-align: left;
+      min-width: 0;
     }
 
     .showcase-info h3 {
@@ -366,14 +397,14 @@
     .showcase-info p {
       color: var(--text-muted);
       font-size: 1.05rem;
-      margin-bottom: 24px;
-      line-height: 1.6;
+      margin-bottom: 22px;
+      line-height: 1.55;
     }
 
     .pill-list {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .pill-item {
@@ -394,13 +425,14 @@
 
     /* Section Headers */
     .section {
-      padding: 90px 0;
+      padding: 72px 0;
+      width: 100%;
     }
 
     .section-header {
       text-align: center;
       max-width: 700px;
-      margin: 0 auto 52px;
+      margin: 0 auto 44px;
     }
 
     .section-tag {
@@ -409,40 +441,45 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--accent);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: block;
     }
 
     .section-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
       font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      line-height: 1.2;
     }
 
     .section-desc {
       color: var(--text-muted);
       font-size: 1.05rem;
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     /* Features Grid */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .feature-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 32px;
+      padding: 26px;
       transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
       position: relative;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      min-width: 0;
+      box-sizing: border-box;
     }
 
     .feature-card:hover {
@@ -455,7 +492,7 @@
       position: absolute;
       top: 24px;
       right: 24px;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 700;
       padding: 4px 10px;
       border-radius: 6px;
@@ -476,8 +513,8 @@
     }
 
     .feature-icon-wrap {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-specular);
@@ -485,42 +522,46 @@
       align-items: center;
       justify-content: center;
       color: var(--accent);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .feature-icon-wrap svg {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
     }
 
     .feature-card h4 {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       letter-spacing: -0.01em;
     }
 
     .feature-card p {
       color: var(--text-muted);
-      font-size: 0.96rem;
-      line-height: 1.6;
+      font-size: 0.95rem;
+      line-height: 1.55;
     }
 
-    /* Comparison Table */
+    /* Comparison Table Desktop */
+    .comparison-desktop {
+      display: block;
+      width: 100%;
+    }
+
     .comparison-wrap {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 20px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      margin-top: 30px;
+      margin-top: 24px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
 
     .table-scroll-hint {
-      display: none;
       text-align: right;
-      padding: 10px 18px 0;
+      padding: 8px 16px;
       font-size: 0.82rem;
       color: var(--text-dim);
     }
@@ -534,7 +575,7 @@
 
     table.comp-table th,
     table.comp-table td {
-      padding: 16px 20px;
+      padding: 14px 18px;
       border-bottom: 1px solid var(--border);
       font-size: 0.95rem;
     }
@@ -543,7 +584,7 @@
       background: rgba(255, 255, 255, 0.03);
       font-weight: 700;
       color: var(--text-dim);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -571,35 +612,44 @@
       color: var(--text-dim);
     }
 
+    /* Comparison Cards Mobile */
+    .comparison-mobile {
+      display: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
     /* Screenshot Gallery */
     .screenshots-section {
       background: rgba(14, 18, 28, 0.5);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+      width: 100%;
     }
 
     .tab-nav {
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
       flex-wrap: wrap;
     }
 
     .tab-btn {
-      padding: 10px 20px;
+      padding: 10px 18px;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border-specular);
       color: var(--text-muted);
       font-weight: 600;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       cursor: pointer;
       transition: all 0.18s ease;
       min-height: 44px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      box-sizing: border-box;
     }
 
     .tab-btn.active,
@@ -612,6 +662,7 @@
     .tab-panel {
       display: none;
       text-align: center;
+      width: 100%;
     }
 
     .tab-panel.active {
@@ -630,38 +681,45 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 16px;
+      padding: 14px;
+      box-sizing: border-box;
+      width: 100%;
     }
 
     .screenshot-frame img {
       max-width: 100%;
       width: auto;
-      max-height: 580px;
+      max-height: 520px;
       object-fit: contain;
       display: block;
-      border-radius: 10px;
+      border-radius: 8px;
     }
 
     /* Pricing Section */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
       max-width: 880px;
       margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .pricing-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 40px;
+      padding: 36px;
       position: relative;
       display: flex;
       flex-direction: column;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
+      min-width: 0;
+      box-sizing: border-box;
+      width: 100%;
     }
 
     .pricing-card.featured {
@@ -692,7 +750,7 @@
       display: flex;
       align-items: baseline;
       gap: 10px;
-      margin: 20px 0 10px;
+      margin: 18px 0 8px;
     }
 
     .price-num {
@@ -715,17 +773,17 @@
     .pricing-desc {
       color: var(--text-muted);
       font-size: 0.96rem;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       line-height: 1.5;
     }
 
     .pricing-features {
       list-style: none;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .pricing-features li {
@@ -749,33 +807,72 @@
       flex-shrink: 0;
     }
 
-    /* FAQ */
-    .faq-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      max-width: 980px;
+    /* FAQ Accordion */
+    .faq-accordion {
+      max-width: 860px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    .faq-item {
+    details.faq-item {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    .faq-item h5 {
-      font-size: 1.15rem;
+    details.faq-item[open] {
+      background: var(--bg-card-hover);
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+
+    summary.faq-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 22px;
+      cursor: pointer;
+      min-height: 48px;
+      list-style: none;
+      user-select: none;
+      box-sizing: border-box;
+    }
+
+    summary.faq-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary.faq-summary h5 {
+      font-size: 1.05rem;
       font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
+      margin: 0;
+      color: var(--text);
+      padding-right: 12px;
+      line-height: 1.35;
     }
 
-    .faq-item p {
+    .faq-chevron {
+      transition: transform 0.2s ease;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    details[open] .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-content {
+      padding: 0 22px 20px;
       color: var(--text-muted);
-      font-size: 0.96rem;
+      font-size: 0.95rem;
       line-height: 1.6;
     }
 
@@ -784,32 +881,36 @@
       background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.22) 0%, rgba(15, 23, 42, 0.85) 100%);
       border: 1px solid rgba(99, 102, 241, 0.35);
       border-radius: 28px;
-      padding: 60px 40px;
+      padding: 56px 36px;
       text-align: center;
-      margin: 60px 0;
+      margin: 52px 0 20px;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .cta-banner h2 {
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       font-weight: 800;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       letter-spacing: -0.02em;
     }
 
     .cta-banner p {
       color: var(--text-muted);
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       max-width: 620px;
-      margin: 0 auto 32px;
+      margin: 0 auto 28px;
     }
 
     /* Footer */
     footer {
       border-top: 1px solid var(--border);
-      padding: 44px 0;
+      padding: 40px 0;
       color: var(--text-dim);
       font-size: 0.9rem;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .footer-inner {
@@ -818,11 +919,13 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 20px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .footer-links {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       list-style: none;
       flex-wrap: wrap;
     }
@@ -831,10 +934,20 @@
       color: var(--text-muted);
       text-decoration: none;
       transition: color 0.15s;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 4px;
+      box-sizing: border-box;
     }
 
     .footer-links a:hover {
       color: var(--text);
+    }
+
+    /* Mobile Sticky Bottom CTA Bar */
+    .mobile-sticky-bar {
+      display: none;
     }
 
     /* Reduced Motion Accessibility */
@@ -855,46 +968,421 @@
       }
     }
 
-    /* Responsive Breakpoints */
+    /* Responsive Breakpoints & Mobile Optimization */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .showcase-grid { grid-template-columns: 1fr; gap: 32px; }
-      .showcase-card { padding: 24px; border-radius: 20px; }
-      .gesture-indicator { display: none; }
-      .hero { padding: 60px 0 40px; }
-      .section { padding: 60px 0; }
-      .cta-banner { padding: 40px 20px; }
-      .table-scroll-hint { display: block; }
+      body {
+        padding-bottom: 74px; /* reserve space for sticky CTA bar */
+      }
 
+      .container {
+        padding: 0 16px;
+      }
+
+      /* Navbar on phones */
+      .nav-inner {
+        height: 60px;
+        gap: 8px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta .btn-secondary {
+        display: none;
+      }
+
+      .nav-cta .btn-badge {
+        display: none;
+      }
+
+      .nav-pro-text-desktop {
+        display: none;
+      }
+
+      .nav-pro-text-mobile {
+        display: inline;
+      }
+
+      .nav-cta .btn-primary {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        min-height: 44px;
+        white-space: nowrap;
+      }
+
+      /* Buttons wrap text cleanly on mobile */
+      .hero-actions .btn,
+      .pricing-card .btn,
+      .cta-banner .btn {
+        white-space: normal;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        line-height: 1.35;
+        padding: 12px 14px;
+      }
+
+      /* Hero section mobile */
+      .hero {
+        padding: 28px 0 20px;
+      }
+
+      .badge {
+        font-size: 0.76rem;
+        padding: 5px 10px;
+        margin-bottom: 14px;
+        white-space: normal;
+        line-height: 1.3;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.85rem, 6.5vw, 2.5rem);
+      }
+
+      .hero p.lead {
+        margin-bottom: 20px;
+        font-size: 0.98rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .hero-footnote {
+        font-size: 0.82rem;
+        margin-top: 10px;
+      }
+
+      /* Showcase card mobile */
+      .showcase-card {
+        padding: 20px 14px;
+        margin-top: 24px;
+        border-radius: 18px;
+      }
+
+      .showcase-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+      }
+
+      .mouse-img {
+        max-height: 190px;
+      }
+
+      .gesture-indicator {
+        display: none;
+      }
+
+      .showcase-info h3 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+      }
+
+      .showcase-info p {
+        font-size: 0.92rem;
+        margin-bottom: 14px;
+      }
+
+      .pill-list {
+        gap: 10px;
+      }
+
+      .pill-item {
+        font-size: 0.88rem;
+      }
+
+      /* Section common mobile */
+      .section {
+        padding: 40px 0;
+      }
+
+      .section-header {
+        margin-bottom: 24px;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .section-desc {
+        font-size: 0.94rem;
+      }
+
+      /* Features section mobile: compact card layout */
+      .features-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .feature-card {
+        padding: 14px 14px;
+        border-radius: 14px;
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        grid-template-areas:
+          "icon title"
+          "icon badge"
+          "desc desc";
+        column-gap: 10px;
+        row-gap: 3px;
+        align-items: center;
+      }
+
+      .feature-icon-wrap {
+        grid-area: icon;
+        width: 36px;
+        height: 36px;
+        margin-bottom: 0;
+        align-self: start;
+      }
+
+      .feature-icon-wrap svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .feature-card h4 {
+        grid-area: title;
+        font-size: 1.02rem;
+        margin-bottom: 0;
+      }
+
+      .feature-card .feature-badge {
+        grid-area: badge;
+        position: static;
+        display: inline-block;
+        width: fit-content;
+        font-size: 0.68rem;
+        padding: 2px 7px;
+        margin-top: 2px;
+      }
+
+      .feature-card p {
+        grid-area: desc;
+        font-size: 0.88rem;
+        margin-top: 4px;
+        line-height: 1.45;
+      }
+
+      /* Comparison: Hide desktop table, show mobile stacked cards */
+      .comparison-desktop {
+        display: none;
+      }
+
+      .comparison-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .comp-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 14px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .comp-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 6px;
+        gap: 6px;
+      }
+
+      .comp-card-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .comp-card-badge {
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        flex-shrink: 0;
+      }
+
+      .comp-card-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: 0.86rem;
+      }
+
+      .comp-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2px 0;
+      }
+
+      .comp-label {
+        color: var(--text-dim);
+      }
+
+      .comp-val {
+        font-weight: 600;
+        text-align: right;
+      }
+
+      .comp-val.highlight {
+        color: var(--success);
+      }
+
+      /* Screenshots mobile */
       .tab-nav {
         justify-content: flex-start;
         overflow-x: auto;
-        padding-bottom: 8px;
+        padding-bottom: 6px;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        gap: 8px;
       }
-      .tab-nav::-webkit-scrollbar { display: none; }
-      .tab-btn { flex-shrink: 0; white-space: nowrap; }
+
+      .tab-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding: 8px 12px;
+        font-size: 0.84rem;
+        min-height: 44px;
+      }
+
+      .screenshot-frame {
+        padding: 6px;
+        border-radius: 12px;
+      }
+
+      .screenshot-frame img {
+        max-height: 260px;
+      }
+
+      /* Pricing mobile */
+      .pricing-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .pricing-card {
+        padding: 24px 16px;
+        border-radius: 18px;
+        width: 100%;
+      }
+
+      .pricing-badge-popular {
+        white-space: nowrap;
+        font-size: 0.72rem;
+        padding: 3px 12px;
+        top: -12px;
+      }
+
+      .price-num {
+        font-size: 2.5rem;
+      }
+
+      .pricing-features {
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .pricing-features li {
+        font-size: 0.88rem;
+      }
+
+      /* FAQ mobile */
+      summary.faq-summary {
+        padding: 12px 14px;
+        min-height: 44px;
+      }
+
+      summary.faq-summary h5 {
+        font-size: 0.94rem;
+      }
+
+      .faq-content {
+        padding: 0 14px 14px;
+        font-size: 0.88rem;
+      }
+
+      /* CTA Banner mobile */
+      .cta-banner {
+        padding: 32px 16px;
+        border-radius: 18px;
+        margin: 32px 0 16px;
+      }
+
+      .cta-banner h2 {
+        font-size: 1.55rem;
+      }
+
+      .cta-banner p {
+        font-size: 0.94rem;
+        margin-bottom: 20px;
+      }
+
+      /* Mobile Sticky Bar */
+      .mobile-sticky-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 99;
+        box-sizing: border-box;
+        background: rgba(9, 13, 20, 0.94);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-top: 1px solid var(--border-specular);
+        padding: 8px 10px;
+        gap: 8px;
+        box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.7);
+      }
+
+      .mobile-sticky-bar .sticky-btn {
+        flex: 1;
+        padding: 9px 6px;
+        font-size: 0.84rem;
+        min-height: 44px;
+        white-space: nowrap;
+        box-sizing: border-box;
+      }
     }
 
-    /* Buttons never overflow their container: labels wrap, badge drops below if needed */
-    .btn { max-width: 100%; }
-    .pricing-card .btn,
-    .cta-banner .btn,
-    .hero-actions .btn {
-      white-space: normal;
-      flex-wrap: wrap;
-      text-align: center;
-      line-height: 1.3;
-    }
-    .pricing-card .btn { width: 100%; }
-
-    @media (max-width: 480px) {
-      .btn-lg { padding: 12px 18px; font-size: 1rem; }
-      .nav-cta .btn-secondary { display: none; }
-      .hero-actions .btn { width: 100%; }
-      .price-num { font-size: 2.6rem; }
-      .pricing-card { padding: 28px 20px; }
+    /* Smallest screen adjustments (<= 360px) */
+    @media (max-width: 360px) {
+      .container {
+        padding: 0 12px;
+      }
+      .brand span {
+        font-size: 0.92rem;
+      }
+      .brand img {
+        width: 28px;
+        height: 28px;
+      }
+      .nav-cta .btn-primary {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+      }
+      .mobile-sticky-bar .sticky-btn {
+        font-size: 0.78rem;
+        padding: 8px 4px;
+      }
     }
   </style>
 </head>
@@ -905,7 +1393,7 @@
   <header>
     <div class="container nav-inner">
       <a href="#" class="brand" aria-label="Magical Touch Home">
-        <img src="assets/icon.png" alt="Magical Touch App Icon">
+        <img src="assets/icon.png" alt="Magical Touch App Icon" width="36" height="36">
         <span>Magical Touch</span>
       </a>
       <nav aria-label="Main Navigation">
@@ -918,9 +1406,10 @@
         </ul>
       </nav>
       <div class="nav-cta">
-        <a href="https://github.com/wskncode/magicaltouch-releases/releases/download/v1.4.0/MagicalTouch-1.4.0.dmg" class="btn btn-secondary">Download Free</a>
-        <a href="https://wskncode.gumroad.com/l/magicaltouch/LAUNCH" class="btn btn-primary">
-          <span>Get Pro · $4.99</span>
+        <a href="https://github.com/wskncode/magicaltouch-releases/releases/download/v1.4.0/MagicalTouch-1.4.0.dmg" class="btn btn-secondary nav-download">Download Free</a>
+        <a href="https://wskncode.gumroad.com/l/magicaltouch/LAUNCH" class="btn btn-primary nav-pro">
+          <span class="nav-pro-text-desktop">Get Pro · $4.99</span>
+          <span class="nav-pro-text-mobile">Get Pro $4.99</span>
           <span class="btn-badge">LAUNCH</span>
         </a>
       </div>
@@ -935,7 +1424,7 @@
           <span class="badge-icon">
             <svg fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg>
           </span>
-          <span>macOS 12 Monterey or later · Apple Silicon Native (M1/M2/M3/M4)</span>
+          <span>macOS 12+ · Apple Silicon Native (M1–M4)</span>
         </div>
         <h1 id="hero-heading">Supercharge your Magic Mouse.<br>The gestures Apple forgot.</h1>
         <p class="lead">
@@ -947,7 +1436,7 @@
             <span class="btn-badge">50% OFF</span>
           </a>
           <a href="https://github.com/wskncode/magicaltouch-releases/releases/download/v1.4.0/MagicalTouch-1.4.0.dmg" class="btn btn-secondary btn-lg">
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             <span>Download Free (Build 101)</span>
           </a>
         </div>
@@ -959,7 +1448,7 @@
         <div class="showcase-card">
           <div class="showcase-grid">
             <div class="showcase-visual">
-              <img src="assets/mouse.png" alt="Apple Magic Mouse with Magical Touch gestures" class="mouse-img">
+              <img src="assets/mouse.png" alt="Apple Magic Mouse with Magical Touch gestures" class="mouse-img" loading="lazy" width="400" height="400">
               <div class="gesture-indicator gi-top">
                 <span class="gi-icon" aria-hidden="true">
                   <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0-1.1.9-2 2-2s2 .9 2 2v4c0 3.3-2.7 6-6 6s-6-2.7-6-6v-3c0-1.1.9-2 2-2s2 .9 2 2v2M12 11V5a2 2 0 014 0v6"/></svg>
@@ -1022,7 +1511,7 @@
           <p class="section-desc">Native Swift app with low CPU overhead. Runs quietly from your menu bar.</p>
         </div>
 
-                <div class="features-grid">
+        <div class="features-grid">
           <!-- Feature 1: Silent Tap -->
           <div class="feature-card">
             <span class="feature-badge badge-free">Free Forever</span>
@@ -1050,20 +1539,20 @@
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
             </div>
             <h4>Three-Finger Middle Click</h4>
-            <p>Three-finger tap simulates native Middle Click. Open links in background browser tabs, close tabs instantly, and pan in Figma and design tools.</p>
+            <p>Three-finger tap simulates native Middle Click. Open links in background browser tabs, close tabs instantly, and pan in Figma.</p>
           </div>
 
-          <!-- Feature 3: Touch Sensitivity Tuning -->
+          <!-- Feature 4: Touch Sensitivity Tuning -->
           <div class="feature-card">
             <span class="feature-badge badge-free">Free Forever</span>
             <div class="feature-icon-wrap" aria-hidden="true">
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
             </div>
             <h4>Touch Sensitivity Tuning</h4>
-            <p>Fine-tune Max Tap Duration (ms), Max Tap Movement, Click Suppression Window, and Mouse Tracking Speed multiplier sliders.</p>
+            <p>Fine-tune Max Tap Duration, Max Tap Movement, Click Suppression Window, and Mouse Tracking Speed multiplier sliders.</p>
           </div>
 
-          <!-- Feature 4: Active Surface Boundaries -->
+          <!-- Feature 5: Active Surface Boundaries -->
           <div class="feature-card">
             <span class="feature-badge badge-free">Free Forever</span>
             <div class="feature-icon-wrap" aria-hidden="true">
@@ -1073,7 +1562,7 @@
             <p>Restrict the active multi-touch area from left, right, top, and bottom edges with an interactive visual bounding editor.</p>
           </div>
 
-          <!-- Feature 5: Menu Bar & Background Controls -->
+          <!-- Feature 6: Menu Bar & Background Controls -->
           <div class="feature-card">
             <span class="feature-badge badge-free">Free Forever</span>
             <div class="feature-icon-wrap" aria-hidden="true">
@@ -1083,7 +1572,7 @@
             <p>Launch at Login toggle, instant background service restart, and the option to hide the menu bar icon for completely invisible background operation.</p>
           </div>
 
-          <!-- Feature 6: Three-Finger Drag (Standard) -->
+          <!-- Feature 7: Three-Finger Drag -->
           <div class="feature-card">
             <span class="feature-badge badge-pro">Pro Feature</span>
             <div class="feature-icon-wrap" aria-hidden="true">
@@ -1093,7 +1582,7 @@
             <p>MacBook trackpad users' favorite gesture on the Magic Mouse. Drag windows, select text, and rearrange canvases effortlessly with three fingers.</p>
           </div>
 
-          <!-- Feature 7: CAD / 3D Orbit Mode -->
+          <!-- Feature 8: CAD / 3D Orbit Mode -->
           <div class="feature-card">
             <span class="feature-badge badge-pro">Pro Feature</span>
             <div class="feature-icon-wrap" aria-hidden="true">
@@ -1103,17 +1592,17 @@
             <p>Routes three-finger drag to Button 2 (Middle Drag) for smooth 1-handed 3D camera orbit in Blender, Maya, and Unity without breaking left-click selection.</p>
           </div>
 
-          <!-- Feature 8: Window Management Swipes -->
+          <!-- Feature 9: Window Management Swipes -->
           <div class="feature-card">
             <span class="feature-badge badge-pro">Pro Feature</span>
             <div class="feature-icon-wrap" aria-hidden="true">
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
             </div>
             <h4>3-Finger Window Swipes</h4>
-            <p>Configurable vertical swipe gestures: Mission Control, App Windows (Exposé), Show Desktop, Fill / Maximize, Full Screen, Minimize, and Split Snap.</p>
+            <p>Configurable vertical swipe gestures: Mission Control, App Windows Exposé, Show Desktop, Fill / Maximize, Full Screen, Minimize, and Split Snap.</p>
           </div>
 
-          <!-- Feature 9: Modifier-Key Alternate Swipes -->
+          <!-- Feature 10: Modifier-Key Alternate Swipes -->
           <div class="feature-card">
             <span class="feature-badge badge-pro">Pro Feature</span>
             <div class="feature-icon-wrap" aria-hidden="true">
@@ -1155,80 +1644,216 @@
           <p class="section-desc">See what Magical Touch adds to the stock Apple Magic Mouse experience.</p>
         </div>
 
-        <div class="table-scroll-hint">← Swipe horizontally to view full matrix →</div>
-        <div class="comparison-wrap">
-                    <table class="comp-table">
-            <thead>
-              <tr>
-                <th scope="col">Gesture / Capability</th>
-                <th scope="col">MacBook Trackpad</th>
-                <th scope="col">Default Magic Mouse</th>
-                <th scope="col" class="highlight">Magic Mouse + Magical Touch</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row"><strong>Silent Tap-to-Click</strong></th>
-                <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes</span></td>
-                <td class="center"><span class="tag-no">— Mechanical click only</span></td>
-                <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
-              </tr>
-              <tr>
-                <th scope="row"><strong>Two-Finger Right Click</strong></th>
-                <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes</span></td>
-                <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Corner press only</span></td>
-                <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
-              </tr>
-              <tr>
-                <th scope="row"><strong>Two-Finger Spaces Navigation</strong></th>
-                <td class="center"><span class="tag-no">— Not used on trackpad</span></td>
-                <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes (Native)</span></td>
-                <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (100% Preserved)</strong></span></td>
-              </tr>
-              <tr>
-                <th scope="row"><strong>Three-Finger Drag (Standard Mode)</strong></th>
-                <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes (Accessibility)</span></td>
-                <td class="center"><span class="tag-no">— Not supported</span></td>
-                <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro)</strong></span></td>
-              </tr>
-              <tr>
-                <th scope="row"><strong>Three-Finger Middle Click / 3D Orbit</strong></th>
-                <td class="center"><span class="tag-no">— Requires modifier keys</span></td>
-                <td class="center"><span class="tag-no">— Not supported</span></td>
-                <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Middle Click Free · CAD Orbit Pro)</strong></span></td>
-              </tr>
-              <tr>
-                <th scope="row"><strong>Three-Finger Window Swipes</strong></th>
-                <td class="center"><span class="tag-no">— No direct gesture</span></td>
-                <td class="center"><span class="tag-no">— Not supported</span></td>
-                <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro, 8 Actions)</strong></span></td>
-              </tr>
-              <tr>
-                <th scope="row"><strong>Modifier-Key Alternate Swipes</strong></th>
-                <td class="center"><span class="tag-no">— No</span></td>
-                <td class="center"><span class="tag-no">— Not supported</span></td>
-                <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro, ⌥/⌘/⌃/⇧)</strong></span></td>
-              </tr>
-              <tr>
-                <th scope="row"><strong>Pinch to Zoom & Two-Finger Rotate</strong></th>
-                <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes</span></td>
-                <td class="center"><span class="tag-no">— Not supported</span></td>
-                <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro)</strong></span></td>
-              </tr>
-              <tr>
-                <th scope="row"><strong>Sensitivity & Active Boundary Tuning</strong></th>
-                <td class="center"><span class="tag-no">— Standard sliders only</span></td>
-                <td class="center"><span class="tag-no">— None</span></td>
-                <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever, 4 Sliders)</strong></span></td>
-              </tr>
-              <tr>
-                <th scope="row"><strong>Hide Menu Bar Icon (Invisible Mode)</strong></th>
-                <td class="center"><span class="tag-no">— N/A</span></td>
-                <td class="center"><span class="tag-no">— N/A</span></td>
-                <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Desktop Comparison Table -->
+        <div class="comparison-desktop">
+          <div class="table-scroll-hint">← Swipe horizontally to view full matrix →</div>
+          <div class="comparison-wrap">
+            <table class="comp-table">
+              <thead>
+                <tr>
+                  <th scope="col">Gesture / Capability</th>
+                  <th scope="col">MacBook Trackpad</th>
+                  <th scope="col">Default Magic Mouse</th>
+                  <th scope="col" class="highlight">Magic Mouse + Magical Touch</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><strong>Silent Tap-to-Click</strong></th>
+                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes</span></td>
+                  <td class="center"><span class="tag-no">— Mechanical click only</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Two-Finger Right Click</strong></th>
+                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes</span></td>
+                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Corner press only</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Two-Finger Spaces Navigation</strong></th>
+                  <td class="center"><span class="tag-no">— Not used on trackpad</span></td>
+                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes (Native)</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (100% Preserved)</strong></span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Three-Finger Drag (Standard Mode)</strong></th>
+                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes (Accessibility)</span></td>
+                  <td class="center"><span class="tag-no">— Not supported</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro)</strong></span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Three-Finger Middle Click / 3D Orbit</strong></th>
+                  <td class="center"><span class="tag-no">— Requires modifier keys</span></td>
+                  <td class="center"><span class="tag-no">— Not supported</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Middle Click Free · CAD Orbit Pro)</strong></span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Three-Finger Window Swipes</strong></th>
+                  <td class="center"><span class="tag-no">— No direct gesture</span></td>
+                  <td class="center"><span class="tag-no">— Not supported</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro, 8 Actions)</strong></span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Modifier-Key Alternate Swipes</strong></th>
+                  <td class="center"><span class="tag-no">— No</span></td>
+                  <td class="center"><span class="tag-no">— Not supported</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro, ⌥/⌘/⌃/⇧)</strong></span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Pinch to Zoom & Two-Finger Rotate</strong></th>
+                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes</span></td>
+                  <td class="center"><span class="tag-no">— Not supported</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro)</strong></span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Sensitivity & Active Boundary Tuning</strong></th>
+                  <td class="center"><span class="tag-no">— Standard sliders only</span></td>
+                  <td class="center"><span class="tag-no">— None</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever, 4 Sliders)</strong></span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><strong>Hide Menu Bar Icon (Invisible Mode)</strong></th>
+                  <td class="center"><span class="tag-no">— N/A</span></td>
+                  <td class="center"><span class="tag-no">— N/A</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Mobile Stacked Comparison Cards -->
+        <div class="comparison-mobile" aria-label="Mobile Feature Comparison">
+          <!-- Card 1 -->
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Silent Tap-to-Click</span>
+              <span class="comp-card-badge badge-free">Free Forever</span>
+            </div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val">✓ Yes</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Mechanical only</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Two-Finger Right Click</span>
+              <span class="comp-card-badge badge-free">Free Forever</span>
+            </div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val">✓ Yes</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val">✓ Corner press only</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Two-Finger Spaces Navigation</span>
+              <span class="comp-card-badge badge-free">Free Forever</span>
+            </div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— Not used on trackpad</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val">✓ Yes (Native)</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (100% Preserved)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Three-Finger Drag</span>
+              <span class="comp-card-badge badge-pro">Pro</span>
+            </div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val">✓ Yes (Accessibility)</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Three-Finger Middle Click / 3D Orbit</span>
+              <span class="comp-card-badge badge-free">Free · Pro</span>
+            </div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— Needs modifiers</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Middle Free · Orbit Pro</span></div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Window Minimize / Maximize Swipes</span>
+              <span class="comp-card-badge badge-pro">Pro</span>
+            </div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— No direct gesture</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro, 8 Actions)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Modifier-Key Alternate Swipes</span>
+              <span class="comp-card-badge badge-pro">Pro</span>
+            </div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— No</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro, ⌥/⌘/⌃/⇧)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Pinch to Zoom & Rotate</span>
+              <span class="comp-card-badge badge-pro">Pro</span>
+            </div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val">✓ Yes</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 9 -->
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Sensitivity & Boundary Tuning</span>
+              <span class="comp-card-badge badge-free">Free Forever</span>
+            </div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— Standard only</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— None</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ 4 Sliders + Area Editor</span></div>
+            </div>
+          </div>
+
+          <!-- Card 10 -->
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Hide Menu Bar Icon (Invisible Mode)</span>
+              <span class="comp-card-badge badge-free">Free Forever</span>
+            </div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— N/A</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— N/A</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1252,27 +1877,27 @@
 
         <div class="tab-panel active" id="tab-0" role="tabpanel" aria-labelledby="tab-btn-0">
           <div class="screenshot-frame">
-            <img src="assets/screenshot-general.png" alt="Magical Touch General Settings screen">
+            <img src="assets/screenshot-general.png" alt="Magical Touch General Settings screen" loading="lazy" width="800" height="490">
           </div>
         </div>
         <div class="tab-panel" id="tab-1" role="tabpanel" aria-labelledby="tab-btn-1">
           <div class="screenshot-frame">
-            <img src="assets/screenshot-gestures.png" alt="Magical Touch Gestures Configuration screen">
+            <img src="assets/screenshot-gestures.png" alt="Magical Touch Gestures Configuration screen" loading="lazy" width="800" height="490">
           </div>
         </div>
         <div class="tab-panel" id="tab-2" role="tabpanel" aria-labelledby="tab-btn-2">
           <div class="screenshot-frame">
-            <img src="assets/screenshot-active-area.png" alt="Magical Touch Active Area Setup screen">
+            <img src="assets/screenshot-active-area.png" alt="Magical Touch Active Area Setup screen" loading="lazy" width="800" height="490">
           </div>
         </div>
         <div class="tab-panel" id="tab-3" role="tabpanel" aria-labelledby="tab-btn-3">
           <div class="screenshot-frame">
-            <img src="assets/screenshot-sensitivity.png" alt="Magical Touch Drag Sensitivity screen">
+            <img src="assets/screenshot-sensitivity.png" alt="Magical Touch Drag Sensitivity screen" loading="lazy" width="800" height="490">
           </div>
         </div>
         <div class="tab-panel" id="tab-4" role="tabpanel" aria-labelledby="tab-btn-4">
           <div class="screenshot-frame">
-            <img src="assets/screenshot-license.png" alt="Magical Touch License and 14-Day Pro Trial Management screen">
+            <img src="assets/screenshot-license.png" alt="Magical Touch License and 14-Day Pro Trial Management screen" loading="lazy" width="800" height="490">
           </div>
         </div>
       </div>
@@ -1385,7 +2010,7 @@
       </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- FAQ Accordion -->
     <section class="section" id="faq" aria-labelledby="faq-heading">
       <div class="container">
         <div class="section-header">
@@ -1393,36 +2018,76 @@
           <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
         </div>
 
-        <div class="faq-grid">
-          <div class="faq-item">
-            <h5>Does this break native two-finger Spaces swipe?</h5>
-            <p>Not at all! macOS native two-finger horizontal swipe left and right for Spaces navigation remains 100% functional and responsive. Magical Touch only handles the missing gestures Apple omitted.</p>
-          </div>
-          <div class="faq-item">
-            <h5>What happens when the 14-day Pro trial ends?</h5>
-            <p>Silent tap-to-click, 2-finger right-click, 3-finger middle click, active boundary tuning, sensitivity sliders, and menu bar controls remain 100% free forever. If you decide not to upgrade, you simply lose the Pro gestures (3-finger drag, CAD orbit, window swipes, and pinch zoom/rotate).</p>
-          </div>
-          <div class="faq-item">
-            <h5>Which Macs and mouse models are supported?</h5>
-            <p>Magical Touch requires macOS 12 Monterey or newer on Apple Silicon Macs (M1, M2, M3, M4 series). It works with Apple Magic Mouse 1, Magic Mouse 2, and the latest USB-C Magic Mouse.</p>
-          </div>
-          <div class="faq-item">
-            <h5>How does tap-to-click prevent accidental clicks?</h5>
-            <p>Magical Touch includes customizable touch sensitivity thresholds and adjustable active surface boundaries. You can tailor the contact area and timing sliders so resting your fingers does not trigger false clicks.</p>
-          </div>
-          <div class="faq-item">
-            <h5>What window management actions can I assign to three-finger swipes?</h5>
-            <p>You can assign 8 actions: Mission Control, App Windows Exposé, Show Desktop, Fill / Maximize, Full Screen, Minimize Window, Snap Left, and Snap Right. Plus, holding Option (⌥), Command (⌘), Control (⌃), or Shift (⇧) triggers 2 additional secondary actions without changing defaults.</p>
-          </div>
-          <div class="faq-item">
-            <h5>How does CAD and 3D Orbit mode work?</h5>
-            <p>In Settings under Three-Finger Drag Mode, switch to 'CAD / 3D Orbit'. Instead of a standard left-drag, three-finger dragging sends a continuous middle-mouse button drag (Button 2) directly to Blender, Maya, Fusion 360, or Unity—allowing single-handed 3D viewport rotation without touching modifier keys.</p>
-          </div>
-          <div class="faq-item">
-            <h5>Does Magical Touch support trackpad pinch to zoom and rotate?</h5>
-            <p>Yes! Pro includes native trackpad-grade pinch-to-zoom and two-finger twisting rotation. It works seamlessly across macOS apps like Safari, Preview, Photos, and Apple Maps.</p>
-          </div>
-        </div>
+        <div class="faq-accordion" role="region" aria-label="Frequently Asked Questions List">
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <h5>Does this break native two-finger Spaces swipe?</h5>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>Not at all! macOS native two-finger horizontal swipe left and right for Spaces navigation remains 100% functional and responsive. Magical Touch only handles the missing gestures Apple omitted.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <h5>What happens when the 14-day Pro trial ends?</h5>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>Silent tap-to-click, 2-finger right-click, 3-finger middle click, active boundary tuning, sensitivity sliders, and menu bar controls remain 100% free forever. If you decide not to upgrade, you simply lose the Pro gestures (3-finger drag, CAD orbit, window swipes, and pinch zoom/rotate).</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <h5>Which Macs and mouse models are supported?</h5>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>Magical Touch requires macOS 12 Monterey or newer on Apple Silicon Macs (M1, M2, M3, M4 series). It works with Apple Magic Mouse 1, Magic Mouse 2, and the latest USB-C Magic Mouse.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <h5>How does tap-to-click prevent accidental clicks?</h5>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>Magical Touch includes customizable touch sensitivity thresholds and adjustable active surface boundaries. You can tailor the contact area and timing sliders so resting your fingers does not trigger false clicks.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <h5>What window management actions can I assign to three-finger swipes?</h5>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>You can assign 8 actions: Mission Control, App Windows Exposé, Show Desktop, Fill / Maximize, Full Screen, Minimize Window, Snap Left, and Snap Right. Plus, holding Option (⌥), Command (⌘), Control (⌃), or Shift (⇧) triggers 2 additional secondary actions without changing defaults.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <h5>How does CAD and 3D Orbit mode work?</h5>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>In Settings under Three-Finger Drag Mode, switch to 'CAD / 3D Orbit'. Instead of a standard left-drag, three-finger dragging sends a continuous middle-mouse button drag (Button 2) directly to Blender, Maya, Fusion 360, or Unity—allowing single-handed 3D viewport rotation without touching modifier keys.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <h5>Does Magical Touch support trackpad pinch to zoom and rotate?</h5>
+              <svg class="faq-chevron" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="faq-content">
+              <p>Yes! Pro includes native trackpad-grade pinch-to-zoom and two-finger twisting rotation. It works seamlessly across macOS apps like Safari, Preview, Photos, and Apple Maps.</p>
+            </div>
+          </details>
         </div>
 
         <!-- Final CTA -->
@@ -1443,6 +2108,12 @@
       </div>
     </section>
   </main>
+
+  <!-- Mobile Sticky Bottom CTA Bar -->
+  <aside class="mobile-sticky-bar" aria-label="Quick Actions">
+    <a href="https://github.com/wskncode/magicaltouch-releases/releases/download/v1.4.0/MagicalTouch-1.4.0.dmg" class="btn btn-secondary sticky-btn">Download Free</a>
+    <a href="https://wskncode.gumroad.com/l/magicaltouch/LAUNCH" class="btn btn-primary sticky-btn">Get Pro · $4.99</a>
+  </aside>
 
   <!-- Footer -->
   <footer>
