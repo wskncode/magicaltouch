@@ -656,10 +656,14 @@
     /* Comparison Table Desktop */
     .row-subtext {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.85rem; /* 13.6px - sentence case */
       font-weight: 400;
-      color: var(--text-muted);
-      margin-top: 3px;
+      color: var(--text-dim); /* softer contrast 7.59:1 */
+      text-transform: none;
+      letter-spacing: normal;
+      margin-top: 4px;
+      line-height: 1.45;
+      max-width: 340px;
     }
 
     .comp-card-desc {
@@ -685,6 +689,7 @@
     }
 
     .table-scroll-hint {
+      display: none;
       text-align: right;
       padding: 8px 16px;
       font-size: 0.82rem;
@@ -705,13 +710,21 @@
       font-size: 0.95rem;
     }
 
-    table.comp-table th {
+    table.comp-table thead th {
       background: rgba(255, 255, 255, 0.03);
       font-weight: 700;
       color: var(--text-dim);
-      font-size: 0.85rem;
+      font-size: 0.80rem;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
+    }
+    table.comp-table tbody th {
+      background: transparent;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.95rem;
+      text-transform: none;
+      letter-spacing: normal;
     }
 
     table.comp-table th.highlight,
@@ -725,6 +738,13 @@
       text-align: center;
     }
 
+    .tag-pro {
+      color: #a5b4fc;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
     .tag-yes {
       color: var(--success);
       font-weight: 700;
@@ -1642,7 +1662,10 @@
   <header>
     <div class="container nav-inner">
       <a href="#" class="brand" aria-label="Magical Touch Home">
-        <img src="assets/icon.png" alt="Magical Touch App Icon" width="36" height="36">
+        <picture>
+          <source srcset="assets/icon.webp" type="image/webp">
+          <img src="assets/icon.png" alt="Magical Touch App Icon" width="36" height="36">
+        </picture>
         <span>Magical Touch</span>
       </a>
       <nav aria-label="Main Navigation">
@@ -1698,7 +1721,10 @@
         <div class="showcase-card">
           <div class="showcase-grid">
             <div class="showcase-visual">
-              <img src="assets/mouse.png" alt="Apple Magic Mouse with Magical Touch gestures" class="mouse-img" loading="lazy" width="400" height="400">
+              <picture>
+                <source srcset="assets/mouse.webp" type="image/webp">
+                <img src="assets/mouse.png" alt="Apple Magic Mouse with Magical Touch gestures" class="mouse-img" loading="eager" width="562" height="1032">
+              </picture>
               <div class="gesture-indicator gi-top">
                 <span class="gi-icon" aria-hidden="true">
                   <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0-1.1.9-2 2-2s2 .9 2 2v4c0 3.3-2.7 6-6 6s-6-2.7-6-6v-3c0-1.1.9-2 2-2s2 .9 2 2v2M12 11V5a2 2 0 014 0v6"/></svg>
@@ -1731,7 +1757,7 @@
                 </div>
                 <div class="pill-item">
                   <svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                  <span><strong>Three-finger tap middle click:</strong> Open links in background tabs and pan in Figma free forever without modifier keys.</span>
+                  <span><strong>Three-finger tap middle click:</strong> Open links in background tabs and pan in Figma without modifier keys.</span>
                 </div>
                 <div class="pill-item">
                   <svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -1776,7 +1802,7 @@
               <span class="mac-window-title">Magical Touch — 20s Demo with Voiceover</span>
             </div>
             <div class="video-wrapper">
-              <video id="hero-demo-video" playsinline muted loop poster="assets/video-poster.jpg" preload="metadata" width="1920" height="1080">
+              <video id="hero-demo-video" playsinline muted loop poster="assets/video-poster.jpg" preload="metadata" width="1920" height="1080" tabindex="0" aria-label="Magical Touch 20-second feature video demo">
                 <source src="assets/hero-demo.mp4" type="video/mp4">
                 Your browser does not support HTML5 video.
               </video>
@@ -1802,7 +1828,7 @@
         <div class="features-grid">
           <!-- Feature 1: Silent Tap -->
           <div class="feature-card">
-            <span class="feature-badge badge-free">Free Forever</span>
+            <span class="feature-badge badge-free">Free</span>
             <div class="feature-icon-wrap" aria-hidden="true">
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
             </div>
@@ -1812,7 +1838,7 @@
 
           <!-- Feature 2: Two-Finger Right Click -->
           <div class="feature-card">
-            <span class="feature-badge badge-free">Free Forever</span>
+            <span class="feature-badge badge-free">Free</span>
             <div class="feature-icon-wrap" aria-hidden="true">
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 11V6a2 2 0 014 0v5M13 11V4a2 2 0 014 0v7M8 15c0 3.3 2.7 6 6 6s6-2.7 6-6v-3c0-1.1-.9-2-2-2s-2 .9-2 2"/></svg>
             </div>
@@ -1822,7 +1848,7 @@
 
           <!-- Feature 3: Three-Finger Middle Click -->
           <div class="feature-card">
-            <span class="feature-badge badge-free">Free Forever</span>
+            <span class="feature-badge badge-free">Free</span>
             <div class="feature-icon-wrap" aria-hidden="true">
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
             </div>
@@ -1832,7 +1858,7 @@
 
           <!-- Feature 4: Touch Sensitivity Tuning -->
           <div class="feature-card">
-            <span class="feature-badge badge-free">Free Forever</span>
+            <span class="feature-badge badge-free">Free</span>
             <div class="feature-icon-wrap" aria-hidden="true">
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
             </div>
@@ -1842,7 +1868,7 @@
 
           <!-- Feature 5: Active Surface Boundaries -->
           <div class="feature-card">
-            <span class="feature-badge badge-free">Free Forever</span>
+            <span class="feature-badge badge-free">Free</span>
             <div class="feature-icon-wrap" aria-hidden="true">
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm4 0v12m8-12v12m-12-8h16m-16 4h16"/></svg>
             </div>
@@ -1852,7 +1878,7 @@
 
           <!-- Feature 6: Menu Bar & Background Controls -->
           <div class="feature-card">
-            <span class="feature-badge badge-free">Free Forever</span>
+            <span class="feature-badge badge-free">Free</span>
             <div class="feature-icon-wrap" aria-hidden="true">
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             </div>
@@ -1971,7 +1997,7 @@
                   </th>
                   <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes</span></td>
                   <td class="center"><span class="tag-no">— Mechanical click only</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes</strong></span></td>
                 </tr>
 <tr class="tier-row tier-free">
                   <th scope="row">
@@ -1979,8 +2005,8 @@
                     <span class="row-subtext">Context menu anywhere on top surface without corner clicking</span>
                   </th>
                   <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes</span></td>
-                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Corner press only</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
+                  <td class="center"><span class="tag-no">— Corner press only</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes</strong></span></td>
                 </tr>
 <tr class="tier-row tier-free">
                   <th scope="row">
@@ -1989,7 +2015,7 @@
                   </th>
                   <td class="center"><span class="tag-no">— Requires modifier keys</span></td>
                   <td class="center"><span class="tag-no">— Not supported</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes</strong></span></td>
                 </tr>
 <tr class="tier-row tier-free">
                   <th scope="row">
@@ -1998,7 +2024,7 @@
                   </th>
                   <td class="center"><span class="tag-no">— Standard sliders only</span></td>
                   <td class="center"><span class="tag-no">— None</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever, 4 Sliders)</strong></span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (4 Sliders)</strong></span></td>
                 </tr>
 <tr class="tier-row tier-free">
                   <th scope="row">
@@ -2007,7 +2033,7 @@
                   </th>
                   <td class="center"><span class="tag-no">— Entire surface fixed</span></td>
                   <td class="center"><span class="tag-no">— Fixed area</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever, Area Editor)</strong></span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Area Editor)</strong></span></td>
                 </tr>
 <tr class="tier-row tier-free">
                   <th scope="row">
@@ -2016,7 +2042,7 @@
                   </th>
                   <td class="center"><span class="tag-no">— N/A</span></td>
                   <td class="center"><span class="tag-no">— N/A</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes</strong></span></td>
                 </tr>
 <tr class="tier-row tier-free">
                   <th scope="row">
@@ -2097,43 +2123,43 @@
 <div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Silent Tap-to-Click</span>
-              <span class="comp-card-badge badge-free">Free Forever</span>
+              <span class="comp-card-badge badge-free">Free</span>
             </div>
             <div class="comp-card-desc">Tap lightly to click without depressing the physical mouse switch. Zero finger fatigue.</div>
             <div class="comp-card-rows">
               <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val">✓ Yes</span></div>
               <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Mechanical only</span></div>
-              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes</span></div>
             </div>
           </div>
 <div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Two-Finger Right Click</span>
-              <span class="comp-card-badge badge-free">Free Forever</span>
+              <span class="comp-card-badge badge-free">Free</span>
             </div>
             <div class="comp-card-desc">Trigger secondary click anywhere on the top surface without awkward corner pressing.</div>
             <div class="comp-card-rows">
               <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val">✓ Yes</span></div>
               <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val">Corner press</span></div>
-              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes</span></div>
             </div>
           </div>
 <div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Three-Finger Middle Click (Tap)</span>
-              <span class="comp-card-badge badge-free">Free Forever</span>
+              <span class="comp-card-badge badge-free">Free</span>
             </div>
             <div class="comp-card-desc">Opens links in background tabs (Safari/Chrome) and closes tabs with a light 3-finger tap.</div>
             <div class="comp-card-rows">
               <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— Needs modifiers</span></div>
               <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
-              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes</span></div>
             </div>
           </div>
 <div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Touch Sensitivity & Timing Sliders</span>
-              <span class="comp-card-badge badge-free">Free Forever</span>
+              <span class="comp-card-badge badge-free">Free</span>
             </div>
             <div class="comp-card-desc">Fine-tune tap duration, drag threshold, and area limits to match your natural touch habits.</div>
             <div class="comp-card-rows">
@@ -2145,7 +2171,7 @@
 <div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Adjustable Active Surface Boundaries</span>
-              <span class="comp-card-badge badge-free">Free Forever</span>
+              <span class="comp-card-badge badge-free">Free</span>
             </div>
             <div class="comp-card-desc">Visual area editor to exclude edges and eliminate accidental resting finger triggers.</div>
             <div class="comp-card-rows">
@@ -2157,13 +2183,13 @@
 <div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Hide Menu Bar Icon & Launch at Login</span>
-              <span class="comp-card-badge badge-free">Free Forever</span>
+              <span class="comp-card-badge badge-free">Free</span>
             </div>
             <div class="comp-card-desc">Runs silently in background on macOS startup with zero dock clutter.</div>
             <div class="comp-card-rows">
               <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— N/A</span></div>
               <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— N/A</span></div>
-              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes</span></div>
             </div>
           </div>
 <div class="comp-card tier-card tier-free">
@@ -2266,27 +2292,42 @@
 
         <div class="tab-panel active" id="tab-0" role="tabpanel" aria-labelledby="tab-btn-0">
           <div class="screenshot-frame">
-            <img src="assets/screenshot-general.png" alt="Magical Touch General Settings screen" loading="lazy" width="800" height="490">
+            <picture>
+                <source srcset="assets/screenshot-general.webp" type="image/webp">
+                <img src="assets/screenshot-general.png" alt="Magical Touch General Settings tab" width="700" height="572" loading="lazy" decoding="async">
+              </picture>
           </div>
         </div>
         <div class="tab-panel" id="tab-1" role="tabpanel" aria-labelledby="tab-btn-1">
           <div class="screenshot-frame">
-            <img src="assets/screenshot-gestures.png" alt="Magical Touch Gestures Configuration screen" loading="lazy" width="800" height="490">
+            <picture>
+                <source srcset="assets/screenshot-gestures.webp" type="image/webp">
+                <img src="assets/screenshot-gestures.png" alt="Magical Touch Gestures configuration tab" width="700" height="940" loading="lazy" decoding="async">
+              </picture>
           </div>
         </div>
         <div class="tab-panel" id="tab-2" role="tabpanel" aria-labelledby="tab-btn-2">
           <div class="screenshot-frame">
-            <img src="assets/screenshot-active-area.png" alt="Magical Touch Active Area Setup screen" loading="lazy" width="800" height="490">
+            <picture>
+                <source srcset="assets/screenshot-active-area.webp" type="image/webp">
+                <img src="assets/screenshot-active-area.png" alt="Magical Touch Active surface boundary editor tab" width="700" height="572" loading="lazy" decoding="async">
+              </picture>
           </div>
         </div>
         <div class="tab-panel" id="tab-3" role="tabpanel" aria-labelledby="tab-btn-3">
           <div class="screenshot-frame">
-            <img src="assets/screenshot-sensitivity.png" alt="Magical Touch Drag Sensitivity screen" loading="lazy" width="800" height="490">
+            <picture>
+                <source srcset="assets/screenshot-sensitivity.webp" type="image/webp">
+                <img src="assets/screenshot-sensitivity.png" alt="Magical Touch Sensitivity sliders tab" width="700" height="572" loading="lazy" decoding="async">
+              </picture>
           </div>
         </div>
         <div class="tab-panel" id="tab-4" role="tabpanel" aria-labelledby="tab-btn-4">
           <div class="screenshot-frame">
-            <img src="assets/screenshot-license.png" alt="Magical Touch License and 14-Day Pro Trial Management screen" loading="lazy" width="800" height="490">
+            <picture>
+                <source srcset="assets/screenshot-license.webp" type="image/webp">
+                <img src="assets/screenshot-license.png" alt="Magical Touch License and Pro activation tab" width="746" height="618" loading="lazy" decoding="async">
+              </picture>
           </div>
         </div>
       </div>
