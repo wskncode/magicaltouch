@@ -1537,6 +1537,102 @@
         padding: 8px 4px;
       }
     }
+  
+    /* Comparison Matrix Grouping & Tier Filter */
+    .comp-filter-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 24px 0 20px;
+      width: 100%;
+    }
+    .comp-filter-tabs {
+      display: inline-flex;
+      background: rgba(18, 24, 38, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px;
+      gap: 6px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+      max-width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .comp-filter-btn {
+      background: transparent;
+      border: 0;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .comp-filter-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .comp-filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 14px var(--primary-glow);
+    }
+    .comp-section-row th {
+      background: rgba(15, 23, 42, 0.96) !important;
+      border-top: 1px solid var(--border-specular) !important;
+      border-bottom: 1px solid var(--border) !important;
+      padding: 12px 18px !important;
+      text-transform: none !important;
+      letter-spacing: normal !important;
+    }
+    .comp-section-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .comp-sec-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .comp-sec-pill.pill-free {
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    .comp-sec-pill.pill-pro {
+      background: rgba(99, 102, 241, 0.22);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.45);
+    }
+    .comp-sec-title-text {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .comp-mobile-sec-header {
+      margin: 22px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(18, 24, 38, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
   </style>
 </head>
 <body>
@@ -1834,7 +1930,16 @@
           <span class="section-tag">Direct Comparison</span>
           <h2 class="section-title" id="comparison-heading">Trackpad freedom with mouse precision</h2>
           <p class="section-desc">See what Magical Touch adds to the stock Apple Magic Mouse experience.</p>
+        
+        <!-- Interactive Tier Filter Tabs -->
+        <div class="comp-filter-wrap">
+          <div class="comp-filter-tabs" role="tablist" aria-label="Feature Tier Filter">
+            <button type="button" class="comp-filter-btn active" data-tier="all" onclick="setCompFilter('all', this)">All Capabilities (12)</button>
+            <button type="button" class="comp-filter-btn" data-tier="free" onclick="setCompFilter('free', this)">Free Forever (7)</button>
+            <button type="button" class="comp-filter-btn" data-tier="pro" onclick="setCompFilter('pro', this)">Pro Tier (5)</button>
+          </div>
         </div>
+</div>
 
         <!-- Desktop Comparison Table -->
         <div class="comparison-desktop">
@@ -1850,7 +1955,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!-- Group 1: Free Forever -->
+                <tr class="comp-section-row comp-sec-free">
+                  <th colspan="4" scope="colgroup">
+                    <div class="comp-section-inner">
+                      <span class="comp-sec-pill pill-free">Free Forever</span>
+                      <span class="comp-sec-title-text">Core Gestures &amp; Calibration (No Expiration · $0)</span>
+                    </div>
+                  </th>
+                </tr>
+<tr class="tier-row tier-free">
                   <th scope="row">
                     <strong>Silent Tap-to-Click</strong>
                     <span class="row-subtext">Zero mechanical force, no finger strain or fatigue</span>
@@ -1859,7 +1973,7 @@
                   <td class="center"><span class="tag-no">— Mechanical click only</span></td>
                   <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
                 </tr>
-                <tr>
+<tr class="tier-row tier-free">
                   <th scope="row">
                     <strong>Two-Finger Right Click</strong>
                     <span class="row-subtext">Context menu anywhere on top surface without corner clicking</span>
@@ -1868,7 +1982,7 @@
                   <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Corner press only</span></td>
                   <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
                 </tr>
-                <tr>
+<tr class="tier-row tier-free">
                   <th scope="row">
                     <strong>Three-Finger Middle Click (3-Finger Tap)</strong>
                     <span class="row-subtext">Open links in background tabs (Safari/Chrome) & close tabs</span>
@@ -1877,61 +1991,7 @@
                   <td class="center"><span class="tag-no">— Not supported</span></td>
                   <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
                 </tr>
-                <tr>
-                  <th scope="row">
-                    <strong>CAD & 3D Viewport Orbit (Middle Drag)</strong>
-                    <span class="row-subtext">Smooth 3D orbit and canvas pan in Blender, Fusion 360, Figma</span>
-                  </th>
-                  <td class="center"><span class="tag-no">— Awkward modifier hold</span></td>
-                  <td class="center"><span class="tag-no">— Not supported</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro, 1-Handed Orbit)</strong></span></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <strong>Three-Finger Drag (Standard Mode)</strong>
-                    <span class="row-subtext">Fluid macOS window and file moving without holding click</span>
-                  </th>
-                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes (Accessibility)</span></td>
-                  <td class="center"><span class="tag-no">— Not supported</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro)</strong></span></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <strong>Three-Finger Window Management Swipes</strong>
-                    <span class="row-subtext">8 actions: Fill, Halves, Mission Control, Show Desktop, Exposé</span>
-                  </th>
-                  <td class="center"><span class="tag-no">— No direct vertical swipe</span></td>
-                  <td class="center"><span class="tag-no">— Not supported</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro, 8 Actions)</strong></span></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <strong>Modifier-Key Alternate Swipes</strong>
-                    <span class="row-subtext">Hold ⌥ / ⌘ / ⌃ / ⇧ to trigger secondary window shortcuts</span>
-                  </th>
-                  <td class="center"><span class="tag-no">— No</span></td>
-                  <td class="center"><span class="tag-no">— Not supported</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro, ⌥/⌘/⌃/⇧)</strong></span></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <strong>Pinch to Zoom & Two-Finger Rotate</strong>
-                    <span class="row-subtext">Natural trackpad gestures ported directly to Magic Mouse</span>
-                  </th>
-                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes</span></td>
-                  <td class="center"><span class="tag-no">— Not supported</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro)</strong></span></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <strong>Two-Finger Spaces Navigation</strong>
-                    <span class="row-subtext">Native Apple horizontal desktop swipe remains 100% untouched</span>
-                  </th>
-                  <td class="center"><span class="tag-no">— Not used on trackpad</span></td>
-                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes (Native)</span></td>
-                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (100% Preserved)</strong></span></td>
-                </tr>
-                <tr>
+<tr class="tier-row tier-free">
                   <th scope="row">
                     <strong>Touch Sensitivity & Timing (4 Sliders)</strong>
                     <span class="row-subtext">Tune tap duration, drag threshold, and touch area to your hand</span>
@@ -1940,7 +2000,7 @@
                   <td class="center"><span class="tag-no">— None</span></td>
                   <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever, 4 Sliders)</strong></span></td>
                 </tr>
-                <tr>
+<tr class="tier-row tier-free">
                   <th scope="row">
                     <strong>Adjustable Active Surface Boundaries</strong>
                     <span class="row-subtext">Interactive visual editor to exclude edges and eliminate accidental triggers</span>
@@ -1949,7 +2009,7 @@
                   <td class="center"><span class="tag-no">— Fixed area</span></td>
                   <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever, Area Editor)</strong></span></td>
                 </tr>
-                <tr>
+<tr class="tier-row tier-free">
                   <th scope="row">
                     <strong>Hide Menu Bar Icon & Launch at Login</strong>
                     <span class="row-subtext">Runs quietly in background on startup with zero dock clutter</span>
@@ -1958,15 +2018,83 @@
                   <td class="center"><span class="tag-no">— N/A</span></td>
                   <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Free Forever)</strong></span></td>
                 </tr>
+<tr class="tier-row tier-free">
+                  <th scope="row">
+                    <strong>Two-Finger Spaces Navigation</strong>
+                    <span class="row-subtext">Native Apple horizontal desktop swipe remains 100% untouched</span>
+                  </th>
+                  <td class="center"><span class="tag-no">— Not used on trackpad</span></td>
+                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes (Native)</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (100% Preserved)</strong></span></td>
+                </tr>
+                <!-- Group 2: Pro Tier -->
+                <tr class="comp-section-row comp-sec-pro">
+                  <th colspan="4" scope="colgroup">
+                    <div class="comp-section-inner">
+                      <span class="comp-sec-pill pill-pro">Pro Tier</span>
+                      <span class="comp-sec-title-text">Power Workflows (14-Day Free Trial · $4.99 One-Time)</span>
+                    </div>
+                  </th>
+                </tr>
+<tr class="tier-row tier-pro">
+                  <th scope="row">
+                    <strong>Three-Finger Drag (Standard Mode)</strong>
+                    <span class="row-subtext">Fluid macOS window and file moving without holding click</span>
+                  </th>
+                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes (Accessibility)</span></td>
+                  <td class="center"><span class="tag-no">— Not supported</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro)</strong></span></td>
+                </tr>
+<tr class="tier-row tier-pro">
+                  <th scope="row">
+                    <strong>CAD & 3D Viewport Orbit (Middle Drag)</strong>
+                    <span class="row-subtext">Smooth 3D orbit and canvas pan in Blender, Fusion 360, Figma</span>
+                  </th>
+                  <td class="center"><span class="tag-no">— Awkward modifier hold</span></td>
+                  <td class="center"><span class="tag-no">— Not supported</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro, 1-Handed Orbit)</strong></span></td>
+                </tr>
+<tr class="tier-row tier-pro">
+                  <th scope="row">
+                    <strong>Three-Finger Window Management Swipes</strong>
+                    <span class="row-subtext">8 actions: Fill, Halves, Mission Control, Show Desktop, Exposé</span>
+                  </th>
+                  <td class="center"><span class="tag-no">— No direct vertical swipe</span></td>
+                  <td class="center"><span class="tag-no">— Not supported</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro, 8 Actions)</strong></span></td>
+                </tr>
+<tr class="tier-row tier-pro">
+                  <th scope="row">
+                    <strong>Modifier-Key Alternate Swipes</strong>
+                    <span class="row-subtext">Hold ⌥ / ⌘ / ⌃ / ⇧ to trigger secondary window shortcuts</span>
+                  </th>
+                  <td class="center"><span class="tag-no">— No</span></td>
+                  <td class="center"><span class="tag-no">— Not supported</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro, ⌥/⌘/⌃/⇧)</strong></span></td>
+                </tr>
+<tr class="tier-row tier-pro">
+                  <th scope="row">
+                    <strong>Pinch to Zoom & Two-Finger Rotate</strong>
+                    <span class="row-subtext">Natural trackpad gestures ported directly to Magic Mouse</span>
+                  </th>
+                  <td class="center"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Yes</span></td>
+                  <td class="center"><span class="tag-no">— Not supported</span></td>
+                  <td class="center highlight"><span class="tag-yes"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> <strong>Yes (Pro)</strong></span></td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
 
         <!-- Mobile Stacked Comparison Cards -->
+        
         <div class="comparison-mobile" aria-label="Mobile Feature Comparison">
-          <!-- Card 1 -->
-          <div class="comp-card">
+          <!-- Mobile Group 1: Free Forever -->
+          <div class="comp-mobile-sec-header comp-sec-free">
+            <span class="comp-sec-pill pill-free">Free Forever</span>
+            <span class="comp-sec-title-text">Core Gestures &amp; Calibration ($0)</span>
+          </div>
+<div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Silent Tap-to-Click</span>
               <span class="comp-card-badge badge-free">Free Forever</span>
@@ -1978,9 +2106,7 @@
               <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
             </div>
           </div>
-
-          <!-- Card 2 -->
-          <div class="comp-card">
+<div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Two-Finger Right Click</span>
               <span class="comp-card-badge badge-free">Free Forever</span>
@@ -1992,9 +2118,7 @@
               <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
             </div>
           </div>
-
-          <!-- Card 3 -->
-          <div class="comp-card">
+<div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Three-Finger Middle Click (Tap)</span>
               <span class="comp-card-badge badge-free">Free Forever</span>
@@ -2006,93 +2130,7 @@
               <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
             </div>
           </div>
-
-          <!-- Card 4 -->
-          <div class="comp-card">
-            <div class="comp-card-header">
-              <span class="comp-card-title">CAD & 3D Viewport Orbit (Middle Drag)</span>
-              <span class="comp-card-badge badge-pro">Pro</span>
-            </div>
-            <div class="comp-card-desc">One-handed 3D viewport orbit and canvas panning in Blender, CAD, and design apps.</div>
-            <div class="comp-card-rows">
-              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— Awkward modifier hold</span></div>
-              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
-              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro, 1-Handed Orbit)</span></div>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="comp-card">
-            <div class="comp-card-header">
-              <span class="comp-card-title">Three-Finger Drag (Standard Mode)</span>
-              <span class="comp-card-badge badge-pro">Pro</span>
-            </div>
-            <div class="comp-card-desc">Move windows and drag items smoothly across your desktop without holding down any click.</div>
-            <div class="comp-card-rows">
-              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val">✓ Accessibility</span></div>
-              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
-              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro)</span></div>
-            </div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="comp-card">
-            <div class="comp-card-header">
-              <span class="comp-card-title">Three-Finger Window Management Swipes</span>
-              <span class="comp-card-badge badge-pro">Pro</span>
-            </div>
-            <div class="comp-card-desc">8 window actions: Snap Halves, Fill, Mission Control, Show Desktop, and Exposé.</div>
-            <div class="comp-card-rows">
-              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— No direct gesture</span></div>
-              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
-              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro, 8 Actions)</span></div>
-            </div>
-          </div>
-
-          <!-- Card 7 -->
-          <div class="comp-card">
-            <div class="comp-card-header">
-              <span class="comp-card-title">Modifier-Key Alternate Swipes</span>
-              <span class="comp-card-badge badge-pro">Pro</span>
-            </div>
-            <div class="comp-card-desc">Hold modifier keys (⌥/⌘/⌃/⇧) to trigger a second set of custom window shortcuts.</div>
-            <div class="comp-card-rows">
-              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— No</span></div>
-              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
-              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro, ⌥/⌘/⌃/⇧)</span></div>
-            </div>
-          </div>
-
-          <!-- Card 8 -->
-          <div class="comp-card">
-            <div class="comp-card-header">
-              <span class="comp-card-title">Pinch to Zoom & Rotate</span>
-              <span class="comp-card-badge badge-pro">Pro</span>
-            </div>
-            <div class="comp-card-desc">Pinch to zoom photos/maps and rotate canvases right on your Magic Mouse surface.</div>
-            <div class="comp-card-rows">
-              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val">✓ Yes</span></div>
-              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
-              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro)</span></div>
-            </div>
-          </div>
-
-          <!-- Card 9 -->
-          <div class="comp-card">
-            <div class="comp-card-header">
-              <span class="comp-card-title">Two-Finger Spaces Navigation</span>
-              <span class="comp-card-badge badge-free">Preserved</span>
-            </div>
-            <div class="comp-card-desc">Apple's native two-finger horizontal swipe between full-screen Spaces is 100% preserved.</div>
-            <div class="comp-card-rows">
-              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— Not on trackpad</span></div>
-              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val">✓ Yes (Native)</span></div>
-              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ 100% Preserved</span></div>
-            </div>
-          </div>
-
-          <!-- Card 10 -->
-          <div class="comp-card">
+<div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Touch Sensitivity & Timing Sliders</span>
               <span class="comp-card-badge badge-free">Free Forever</span>
@@ -2104,9 +2142,7 @@
               <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ 4 Sliders (Free)</span></div>
             </div>
           </div>
-
-          <!-- Card 11 -->
-          <div class="comp-card">
+<div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Adjustable Active Surface Boundaries</span>
               <span class="comp-card-badge badge-free">Free Forever</span>
@@ -2118,9 +2154,7 @@
               <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Interactive Area Editor</span></div>
             </div>
           </div>
-
-          <!-- Card 12 -->
-          <div class="comp-card">
+<div class="comp-card tier-card tier-free">
             <div class="comp-card-header">
               <span class="comp-card-title">Hide Menu Bar Icon & Launch at Login</span>
               <span class="comp-card-badge badge-free">Free Forever</span>
@@ -2131,7 +2165,85 @@
               <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— N/A</span></div>
               <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Free Forever)</span></div>
             </div>
-          </div></div>
+          </div>
+<div class="comp-card tier-card tier-free">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Two-Finger Spaces Navigation</span>
+              <span class="comp-card-badge badge-free">Preserved</span>
+            </div>
+            <div class="comp-card-desc">Apple's native two-finger horizontal swipe between full-screen Spaces is 100% preserved.</div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— Not on trackpad</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val">✓ Yes (Native)</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ 100% Preserved</span></div>
+            </div>
+          </div>
+          <!-- Mobile Group 2: Pro Tier -->
+          <div class="comp-mobile-sec-header comp-sec-pro">
+            <span class="comp-sec-pill pill-pro">Pro Tier</span>
+            <span class="comp-sec-title-text">Power Gestures (14-Day Trial · $4.99)</span>
+          </div>
+<div class="comp-card tier-card tier-pro">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Three-Finger Drag (Standard Mode)</span>
+              <span class="comp-card-badge badge-pro">Pro</span>
+            </div>
+            <div class="comp-card-desc">Move windows and drag items smoothly across your desktop without holding down any click.</div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val">✓ Accessibility</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro)</span></div>
+            </div>
+          </div>
+<div class="comp-card tier-card tier-pro">
+            <div class="comp-card-header">
+              <span class="comp-card-title">CAD & 3D Viewport Orbit (Middle Drag)</span>
+              <span class="comp-card-badge badge-pro">Pro</span>
+            </div>
+            <div class="comp-card-desc">One-handed 3D viewport orbit and canvas panning in Blender, CAD, and design apps.</div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— Awkward modifier hold</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro, 1-Handed Orbit)</span></div>
+            </div>
+          </div>
+<div class="comp-card tier-card tier-pro">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Three-Finger Window Management Swipes</span>
+              <span class="comp-card-badge badge-pro">Pro</span>
+            </div>
+            <div class="comp-card-desc">8 window actions: Snap Halves, Fill, Mission Control, Show Desktop, and Exposé.</div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— No direct gesture</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro, 8 Actions)</span></div>
+            </div>
+          </div>
+<div class="comp-card tier-card tier-pro">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Modifier-Key Alternate Swipes</span>
+              <span class="comp-card-badge badge-pro">Pro</span>
+            </div>
+            <div class="comp-card-desc">Hold modifier keys (⌥/⌘/⌃/⇧) to trigger a second set of custom window shortcuts.</div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val tag-no">— No</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro, ⌥/⌘/⌃/⇧)</span></div>
+            </div>
+          </div>
+<div class="comp-card tier-card tier-pro">
+            <div class="comp-card-header">
+              <span class="comp-card-title">Pinch to Zoom & Rotate</span>
+              <span class="comp-card-badge badge-pro">Pro</span>
+            </div>
+            <div class="comp-card-desc">Pinch to zoom photos/maps and rotate canvases right on your Magic Mouse surface.</div>
+            <div class="comp-card-rows">
+              <div class="comp-row"><span class="comp-label">MacBook Trackpad</span><span class="comp-val">✓ Yes</span></div>
+              <div class="comp-row"><span class="comp-label">Default Magic Mouse</span><span class="comp-val tag-no">— Not supported</span></div>
+              <div class="comp-row"><span class="comp-label">Magical Touch</span><span class="comp-val highlight">✓ Yes (Pro)</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2471,6 +2583,34 @@
         });
       }
     }
+  
+    function setCompFilter(tier, btn) {
+      document.querySelectorAll('.comp-filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      
+      const rows = document.querySelectorAll('.tier-row');
+      const cards = document.querySelectorAll('.tier-card');
+      const freeSecs = document.querySelectorAll('.comp-sec-free');
+      const proSecs = document.querySelectorAll('.comp-sec-pro');
+      
+      if (tier === 'all') {
+        rows.forEach(r => r.style.display = '');
+        cards.forEach(c => c.style.display = '');
+        freeSecs.forEach(s => s.style.display = '');
+        proSecs.forEach(s => s.style.display = '');
+      } else if (tier === 'free') {
+        rows.forEach(r => r.style.display = r.classList.contains('tier-free') ? '' : 'none');
+        cards.forEach(c => c.style.display = c.classList.contains('tier-free') ? '' : 'none');
+        freeSecs.forEach(s => s.style.display = '');
+        proSecs.forEach(s => s.style.display = 'none');
+      } else if (tier === 'pro') {
+        rows.forEach(r => r.style.display = r.classList.contains('tier-pro') ? '' : 'none');
+        cards.forEach(c => c.style.display = c.classList.contains('tier-pro') ? '' : 'none');
+        freeSecs.forEach(s => s.style.display = 'none');
+        proSecs.forEach(s => s.style.display = '');
+      }
+    }
+
   </script>
 </body>
 </html>
