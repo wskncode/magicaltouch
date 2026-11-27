@@ -277,6 +277,7 @@
       background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-wrap: balance;
     }
 
     .hero p.lead {
@@ -458,6 +459,7 @@
       letter-spacing: -0.02em;
       margin-bottom: 14px;
       line-height: 1.2;
+      text-wrap: balance;
     }
 
     .section-desc {
@@ -1152,6 +1154,25 @@
       .btn-secondary:hover,
       .feature-card:hover {
         transform: none;
+      }
+    }
+
+    /* Tablet / Small Laptop Optimization (769px - 1100px) */
+    @media (max-width: 1100px) and (min-width: 769px) {
+      .container {
+        padding: 0 24px;
+      }
+      .nav-links {
+        gap: 16px;
+      }
+      .nav-links a {
+        font-size: 0.88rem;
+      }
+      .nav-cta .btn-secondary {
+        display: none;
+      }
+      .nav-inner {
+        gap: 16px;
       }
     }
 
